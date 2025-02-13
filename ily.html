@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Rasmalai ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://drive.google.com/uc?export=download&id=1BXonZlZcAdpAHVTwn7gfBSepP6WeZtq0') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 5px black;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 80px; /* Proper spacing */
+            position: relative;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 15px 25px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: #ff1493;
+            color: white;
+        }
+        #yes:hover {
+            transform: scale(1.2);
+        }
+        #no {
+            background-color: #555;
+            color: white;
+            position: absolute;
+        }
+        @keyframes floating-hearts {
+            0% { transform: translateY(100vh); opacity: 0.8; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+        .heart {
+            font-size: 30px;
+            position: absolute;
+            animation: floating-hearts 4s linear infinite;
+        }
+    </style>
+</head>
+<body onclick="playMusic()">
+    <h1>Will you be my Valentine, Amrasha? 💖</h1>
+    <div class="buttons">
+        <button id="yes" onclick="accepted()">Yes 💘</button>
+        <button id="no" onclick="moveNo()">No ❌</button>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1BWBnquMp8fV8Tupp70jNvaiKodWdf5l_" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let yesSize = 1.5; // Initial font size (in rem)
+
+        function moveNo() {
+            let noBtn = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 150);  // Move within window width
+            let y = Math.random() * (window.innerHeight - 150); // Move within window height
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            growYes();  // Increase the size of Yes button every time No is clicked
+        }
+
+        function growYes() {
+            yesSize += 0.5; // Increase font size of Yes button
+            yesButton.style.fontSize = yesSize + "rem";
+        }
+
+        function accepted() {
+            document.body.innerHTML = `
+                <h1>I love you, meri Rasmalai... with all my heart 💕❣️</h1>
+                <p>You truly mean a lot to me 💖</p>
+            `;
+        }
+
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+        setInterval(createHeart, 500);
+
+        function playMusic() {
+            document.getElementById("bgMusic").play();
+        }
+    </script>
+</body>
+</html>
